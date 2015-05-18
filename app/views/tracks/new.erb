@@ -1,18 +1,29 @@
 <h1>Add a Song</h1>
 <hr/>
 
+<% if @track.errors.any? %>
+  <div>
+    <strong>Some issues with your song, please fix them:</strong>
+    <ul>
+      <% @track.errors.full_messages.each do |track| %>
+        <li><%= track %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form action="/tracks/new" method="post">
   <div>
     <label>Title:</label>
-    <input type="text" name="title">
+    <input type="text" name="title" value="<%= @track.title %>">
   </div>
   <div>
     <label>Author:</label>
-    <input type="text" name="author">
+    <input type="text" name="author" value="<%= @track.author %>">
   </div>
   <div>
     <label>Url:</label>
-    <input type="text" name="content">
+    <input type="text" name="url" value="<%= @track.url %>">
   </div>
   <div>
     <input type="submit" value="Submit">
