@@ -30,3 +30,20 @@ get '/tracks/:id' do
   @track = Track.find params[:id]
   erb :'tracks/show'
 end
+
+get '/users/signup' do
+  @user = User.new
+  erb :'users/signup'
+end
+
+post '/users/signup' do
+  @user = User.new(
+    name: params[:name],
+    password: params[:password]
+  )
+  if @user.save
+    redirect '/tracks'
+  else
+    erb :'users/signup'
+  end
+end
