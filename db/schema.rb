@@ -20,4 +20,9 @@ ActiveRecord::Schema.define(version: 20150518112920) do
     t.datetime "updated_at"
   end
 
+  create_table "users", force: true do |t|
+    t.string "name"
+    t.string "password"
+  end
+
 end
