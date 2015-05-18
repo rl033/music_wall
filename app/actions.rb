@@ -21,3 +21,8 @@ post '/tracks/new' do
   @track.save
   redirect '/tracks'
 end
+
+get '/tracks/:id' do
+  @track = Track.find params[:id]
+  erb :'tracks/show'
+end
