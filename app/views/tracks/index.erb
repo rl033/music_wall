@@ -1,0 +1,12 @@
+<h1>List of Tracks</h1>
+<hr/>
+
+<% @tracks.each do |track| %>
+  <div class="track">
+    <h3><%= track.title %> <small>(by: <%= track.author %>)</small></h3>
+    <p>
+      <%= track.created_at %>
+      <%= track.updated_at %>
+    </p>
+  </div>
+<% end %>
