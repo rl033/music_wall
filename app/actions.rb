@@ -61,3 +61,8 @@ post '/users/signin' do
   end
   
 end
+
+get '/users/signout' do
+  session[:name] = ""
+  redirect '/tracks'
+end
