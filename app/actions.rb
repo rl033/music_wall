@@ -47,3 +47,17 @@ post '/users/signup' do
     erb :'users/signup'
   end
 end
+
+get '/users/signin' do
+  @user = User.new
+  erb :'users/signin'
+end
+
+post '/users/signin' do
+  @user = User.find_by_name(params[:name])
+  if @user && @user.password == params[:password]
+    session[:name] = @user.name
+    redirect '/tracks'
+  end
+  
+end

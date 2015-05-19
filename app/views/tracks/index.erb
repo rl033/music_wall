@@ -1,4 +1,7 @@
 <h1>List of Songs</h1>
+<% if session[:name] && session[:name] != "" %>
+  <p>Welcome <%= User.find_by_name(session[:name]).name %></p>
+<% end %>
 <hr/>
 
 <% @tracks.each do |track| %>
@@ -15,4 +18,4 @@
 <a href="/tracks/new">Add a new song</a>
 
 <hr/>
-<a href="/users/signup">Sign up</a>
+<a href="/users/signup">Sign up</a> <a href="/users/signin">Sign in</a>
