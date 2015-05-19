@@ -14,9 +14,10 @@ get '/tracks/new' do
 end
 
 post '/tracks/new' do
+  author = session[:name] == "" ? params[:author] : session[:name]
   @track = Track.new(
     title: params[:title],
-    author: params[:author],
+    author: author,
     url: params[:url]
   )
   if @track.save
