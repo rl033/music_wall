@@ -1,16 +1,18 @@
 <h1>List of Songs</h1>
-<% if session[:name] && session[:name] != "" %>
-  <p>Welcome <%= User.find_by_name(session[:name]).name %></p>
+<% if user_signed_in? %>
+  <p>Welcome <%= get_current_user.name %></p>
 <% end %>
 <hr/>
 
 <% @tracks.each do |track| %>
   <div class="track">
     <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small></h3>
-    <p>
-      <%= track.created_at %>
-      <%= track.updated_at %>
-    </p>
+
+    <% if track.user %>
+      <p>User: <%= track.user.name %></p> 
+    <% end %>
+    <p>Created at: <%= track.created_at %></p>
+    <p>Modifed at: <%= track.updated_at %></p>
   </div>
 <% end %>
 
@@ -18,7 +20,9 @@
 <a href="/tracks/new">Add a new song</a>
 
 <hr/>
-<a href="/users/signup">Sign up</a> <a href="/users/signin">Sign in</a> 
-<% if session[:name] != "" %>
+<% if session[:user_id] != "" %>
   <a href="/users/signout">Sign out</a>
+<% else %>
+  <a href="/users/signup">Sign up</a> 
+  <a href="/users/signin">Sign in</a> 
 <% end %>
